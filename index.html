@@ -1,128 +1,239 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <link rel="icon" href="favicon.ico" type="image/x-icon"/>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="description"
-          content="Официальный телеграм-канал города Бронницы. Подпишитесь на Типичные Бронницы и будьте в курсе всех новостей, событий и важных объявлений!"/>
-    <meta name="keywords"
-          content="Бронницы, новости Бронницы, Telegram канал, Типичные Бронницы, t.me/tbronnitsy, телеграм канал Бронницы, tbronnitsy telegram"/>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Официальный телеграм-канал города Бронницы. Подпишитесь на Типичные Бронницы и будьте в курсе всех новостей, событий и важных объявлений!" />
+    <meta name="keywords" content="Бронницы, новости Бронницы, Telegram канал, Типичные Бронницы, t.me/tbronnitsy, телеграм канал Бронницы, tbronnitsy telegram" />
+    <meta property="og:title" content="Типичные Бронницы — Новости города Бронницы">
+    <meta property="og:description" content="Подпишитесь на Telegram-канал города Бронницы и будьте в курсе всего важного.">
+    <meta property="og:image" content="logo.jpg">
+    <meta property="og:url" content="https://t.me/tbronnitsy">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="google-site-verification" content="tf16o4cxJS4cxubEuCY5Z8rR0nma4DV1FWxFfBILKcA" />
-    <meta name="yandex-verification" content="700e65a3bbbf65aa" />
-    <title>Типичные Бронницы — Telegram-канал города Бронницы | Новости и события</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <title>Типичные Бронницы — Городской Telegram-канал</title>
     <style>
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             margin: 0;
-            background: #ffffff;
-            color: #222;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to bottom, #f5f8fa, #ffffff);
+            color: #333;
+            transition: background 0.5s, color 0.5s;
         }
 
         header {
-            background: #0088cc;
-            color: #fff;
-            padding: 2rem 1rem;
+            background: linear-gradient(90deg, #0088cc, #005f8c);
+            color: white;
+            padding: 3rem 1rem 2rem;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(255,255,255,0.1), transparent);
+            animation: rotateLight 10s linear infinite;
+        }
+
+        @keyframes rotateLight {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
         header img {
-            max-width: 150px;
+            max-width: 100px;
+            border-radius: 50%;
             margin-bottom: 1rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+            animation: fadeIn 1.5s ease-in;
         }
 
         header h1 {
-            font-size: 2.2rem;
+            font-size: 2.5rem;
+            margin: 0.5rem 0;
+            animation: slideDown 1s ease-out;
+        }
+
+        header p {
+            font-size: 1.1rem;
             margin: 0;
+            animation: fadeIn 2s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
 
         main {
-            padding: 2rem 1rem;
             max-width: 960px;
             margin: 0 auto;
+            padding: 2rem 1rem;
         }
 
-        main h2 {
-            font-size: 1.6rem;
-            margin-top: 2rem;
+        section {
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
         }
 
-        main p {
-            line-height: 1.6;
+        section.reveal {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h2 {
+            color: #005f8c;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
         }
 
         ul {
-            padding-left: 1.2rem;
+            padding-left: 1.5rem;
+            list-style: disc;
+            line-height: 1.7;
         }
 
         .btn {
             display: inline-block;
-            margin-top: 1rem;
-            padding: 0.75rem 1.5rem;
             background: #0088cc;
-            color: #fff;
-            border-radius: 8px;
+            color: white;
+            padding: 0.8rem 1.6rem;
+            border-radius: 10px;
             text-decoration: none;
             font-weight: bold;
+            font-size: 1.1rem;
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .btn:hover {
+            background: #0071aa;
+            transform: scale(1.05);
         }
 
         iframe {
+            width: 100%;
+            height: 540px;
             border: none;
             border-radius: 12px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
         footer {
-            background: #f2f2f2;
+            background: #f0f0f0;
             text-align: center;
             padding: 1rem;
             font-size: 0.9rem;
-            color: #555;
+            color: #666;
+        }
+
+        .dark-mode {
+            background: #1a1a1a;
+            color: #ddd;
+        }
+
+        .dark-mode header {
+            background: linear-gradient(90deg, #003344, #001f33);
+        }
+
+        .dark-mode footer {
+            background: #111;
+            color: #888;
+        }
+
+        .toggle-mode {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: #0088cc;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            z-index: 1000;
         }
     </style>
 </head>
 <body>
 
+<button class="toggle-mode" onclick="document.body.classList.toggle('dark-mode')">🌗 Темная тема</button>
+
 <header>
     <img src="logo.jpg" alt="Логотип Типичные Бронницы">
-    <h1>Официальный Telegram-канал Типичные Бронницы</h1>
-    <p>Все главные новости города Бронницы — в одном месте</p>
+    <h1>Типичные Бронницы</h1>
+    <p>Городской Telegram-канал с актуальными новостями и событиями</p>
 </header>
 
 <main>
-    <p><strong>Типичные Бронницы</strong> — это городской <strong>Telegram-канал</strong> с самыми важными новостями,
-        объявлениями и событиями Бронниц. Следите за всем, что происходит в городе — от отключений воды до праздничных
-        мероприятий и новостей ЖКХ.</p>
+    <section>
+        <p><strong>Типичные Бронницы</strong> — это городской <strong>Telegram-канал</strong>, где вы найдёте самые важные новости, предупреждения, объявления и фотоотчёты с мероприятий. Следите за жизнью города в реальном времени.</p>
+        <a href="https://t.me/tbronnitsy" class="btn" target="_blank" rel="noopener noreferrer">📲 Подписаться на канал</a>
+    </section>
 
-    <a href="https://t.me/tbronnitsy" class="btn" target="_blank">📲 Подписаться на канал</a>
+    <section>
+        <h2>Что вы найдёте в нашем канале:</h2>
+        <ul>
+            <li>Оперативные городские новости</li>
+            <li>Оповещения от коммунальных и экстренных служб</li>
+            <li>Анонсы ярмарок, концертов и праздников</li>
+            <li>Фото- и видеоматериалы с мероприятий</li>
+            <li>Всё без политики, рекламы и спама</li>
+        </ul>
+    </section>
 
-    <h2>Что публикуется в Telegram-канале Типичные Бронницы:</h2>
-    <ul>
-        <li>Новости города Бронницы без фейков</li>
-        <li>Оповещения от администрации и коммунальных служб</li>
-        <li>Анонсы мероприятий, ярмарок, концертов</li>
-        <li>Важные предупреждения от МЧС и ГИБДД</li>
-        <li>Фото и видео с городских событий</li>
-    </ul>
+    <section>
+        <h2>Последние публикации:</h2>
+        <iframe id="tgw_680154db6a2bdf5818099485"></iframe>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                document.getElementById("tgw_680154db6a2bdf5818099485").setAttribute("src", "https://tgwidget.com/channel/v2.0/?id=680154db6a2bdf5818099485")
+            })
+        </script>
+    </section>
 
-    <h2>Последние посты из канала:</h2>
-    <iframe id="tgw_680154db6a2bdf5818099485" frameborder="0" scrolling="no" horizontalscrolling="no"
-            verticalscrolling="no" width="100%" height="540px" async></iframe>
-    <script>document.addEventListener("DOMContentLoaded", function () {
-        document.getElementById("tgw_680154db6a2bdf5818099485").setAttribute("src", "https://tgwidget.com/channel/v2.0/?id=680154db6a2bdf5818099485")
-    })</script>
-
-    <h2>Зачем подписываться:</h2>
-    <p>Канал <strong>@tbronnitsy</strong> — это актуальная и полезная информация без рекламы, политики и шума. Только
-        важное, коротко и по делу. Подходит для всех жителей города и близлежащих районов.</p>
-
-    <p><strong>Ключевые слова для поиска:</strong> новости Бронницы, телеграм канал Бронницы, Типичные Бронницы
-        telegram, Типичные Бронницы, t.me/tbronnitsy, афиша Бронницы</p>
+    <section>
+        <h2>Почему стоит подписаться:</h2>
+        <p>Канал <strong>@tbronnitsy</strong> создан для жителей и гостей Бронниц, кто хочет быть в курсе всех важных событий, не теряя времени на лишнее. Мы публикуем только проверенную и полезную информацию.</p>
+        <p><strong>Ключевые слова:</strong> новости Бронницы, телеграм канал Бронницы, Типичные Бронницы telegram, t.me/tbronnitsy</p>
+    </section>
 </main>
 
 <footer>
-    © 2025 Типичные Бронницы. Telegram-канал города Бронницы.
+    © 2025 Типичные Бронницы · Telegram-канал города Бронницы
 </footer>
+
+<script>
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('reveal');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('section').forEach(section => {
+        observer.observe(section);
+    });
+</script>
 
 </body>
 </html>
